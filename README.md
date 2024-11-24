@@ -25,7 +25,7 @@ import AdSearchKit
 Use the attribution method to retrieve campaign attribution data:
 
 ```swift
-AdSearchKit.attribution { attribution in
+AdSearch.attribution { attribution in
     switch attribution {
     case .success(let attribution):
         print("Attribution Data: \(attribution)")
