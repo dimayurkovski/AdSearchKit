@@ -99,23 +99,6 @@ public extension AdSearch {
      * }
      * ```
      *
-     * Example Response Payload (View-through attribution):
-     * ```
-     * {
-     *   "attribution": true,
-     *   "orgId": 40669820,
-     *   "campaignId": 542370539,
-     *   "conversionType": "Download",
-     *   "impressionDate": "2020-04-08T17:17Z",
-     *   "claimType": "Impression",
-     *   "adGroupId": 542317095,
-     *   "countryOrRegion": "US",
-     *   "keywordId": 87675432,
-     *   "adId": 542317136,
-     *   "creativeSetId": 542317200
-     * }
-     * ```
-     *
      * - Parameter completion: A closure that returns a `Result` with either the `Attribution` data on success
      *                         or an error on failure.
      *
