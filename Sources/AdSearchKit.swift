@@ -82,7 +82,7 @@ public extension AdSearch {
      * --data-raw 'YOUR_ATTRIBUTION_TOKEN'
      * ```
      *
-     * Example Response Payload:
+     * Example Response Payload (Click-through attribution):
      * ```
      * {
      *   "attribution": true,
@@ -94,7 +94,8 @@ public extension AdSearch {
      *   "adGroupId": 542317095,
      *   "countryOrRegion": "US",
      *   "keywordId": 87675432,
-     *   "adId": 542317136
+     *   "adId": 542317136,
+     *   "creativeSetId": 542317200
      * }
      * ```
      *
@@ -214,13 +215,19 @@ public extension AdSearch {
      * - `attribution`: A boolean indicating whether the attribution was successful.
      * - `orgId`: The organization ID associated with the attribution.
      * - `campaignId`: The campaign ID associated with the attribution.
-     * - `conversionType`: The type of conversion for the attribution.
-     * - `claimType`: The type of claim associated with the attribution.
-     * - `clickDate`: The date when the ad was clicked.
+     * - `conversionType`: The type of conversion for the attribution ("Download" or "Redownload").
+     * - `claimType`: The type of claim associated with the attribution ("Click" or "Impression").
+     * - `clickDate`: The date when the ad was clicked (only present in detailed payload when claimType is "Click").
+     * - `impressionDate`: The date when the ad was viewed (only present in detailed payload when claimType is "Impression").
      * - `adGroupId`: The ad group ID associated with the attribution.
      * - `countryOrRegion`: The country or region where the attribution occurred.
      * - `keywordId`: The keyword ID associated with the attribution.
      * - `adId`: The ad ID associated with the attribution.
+     * - `creativeSetId`: The creative set ID associated with the attribution.
+     *
+     * - Note: The `clickDate` and `impressionDate` fields are only returned in the detailed payload when the user
+     *         has opted into tracking via ATT (App Tracking Transparency) for the specific app.
+     *         View-through attribution (VTA) with `impressionDate` is available since March 2025.
      *
      * - Note: The default value for the `orgId` is `sandboxOrgId`, which is set to `1234567890` by default.
      *         This ID is typically used in sandbox or testing environments to allow developers to interact with the framework
@@ -233,10 +240,12 @@ public extension AdSearch {
         public let conversionType: String?
         public let claimType: String?
         public let clickDate: String?
+        public let impressionDate: String?
         public let adGroupId: Int?
         public let countryOrRegion: String?
         public let keywordId: Int?
         public let adId: Int?
+        public let creativeSetId: Int?
     }
 }
 
