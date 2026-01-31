@@ -138,6 +138,39 @@ public extension AdSearch {
         
         task.resume()
     }
+
+    /**
+     * Fetches attribution data from the AdServices API using async/await.
+     *
+     * This is the modern Swift concurrency version of the `attribution` method.
+     * It provides the same functionality but uses Swift's structured concurrency
+     * instead of completion handlers.
+     *
+     * - Returns: The `Attribution` data containing campaign attribution information.
+     * - Throws: `AdSearchError` if the token is invalid, URL is malformed, or response cannot be parsed.
+     *
+     * Example Usage:
+     * ```swift
+     * Task {
+     *     do {
+     *         let attribution = try await AdSearch.attribution()
+     *         print("Campaign ID: \(attribution.campaignId ?? 0)")
+     *     } catch {
+     *         print("Error: \(error)")
+     *     }
+     * }
+     * ```
+     *
+     * - Note: Available on iOS 13.0+, macOS 10.15+ with Swift 5.5+.
+     */
+    @available(iOS 13.0, macOS 10.15, *)
+    static func attribution() async throws -> Attribution {
+        return try await withCheckedThrowingContinuation { continuation in
+            attribution { result in
+                continuation.resume(with: result)
+            }
+        }
+    }
 }
 
 // MARK: - Type Aliases
@@ -149,7 +182,7 @@ public extension AdSearch {
  * - `.success` with `Attribution` data when the attribution fetch succeeds.
  * - `.failure` with an error when the attribution fetch fails.
  */
-public typealias AdSearchCompletion = ((Result<AdSearch.Attribution, Error>) -> Void)
+public typealias AdSearchCompletion = @Sendable (Result<AdSearch.Attribution, any Error>) -> Void
 
 // MARK: - Errors
 
@@ -163,7 +196,7 @@ public extension AdSearch {
      * - `invalidUrl`: The URL for the API is invalid.
      * - `invalidResponse`: The response from the API is invalid or could not be parsed.
      */
-    enum AdSearchError: Error {
+    enum AdSearchError: Error, Sendable {
         case invalidToken
         case invalidUrl
         case invalidResponse
@@ -193,7 +226,7 @@ public extension AdSearch {
      *         This ID is typically used in sandbox or testing environments to allow developers to interact with the framework
      *         without needing a real organization identifier.
      */
-    struct Attribution: Codable {
+    struct Attribution: Codable, Sendable {
         public let attribution: Bool
         public let orgId: Int?
         public let campaignId: Int?

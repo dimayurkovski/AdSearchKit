@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/**/*.swift'
   s.frameworks = 'AdServices'
   s.platform = :ios, '12.0'
-  s.swift_versions = ['5']
+  s.swift_versions = ['5', '6']
   s.resource_bundles = {'AdSearchKit' => ['Sources/PrivacyInfo.xcprivacy']}
 end
