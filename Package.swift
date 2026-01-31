@@ -14,5 +14,5 @@ let package = Package(
         .target(name: "AdSearchKit",
                 resources: [.process("PrivacyInfo.xcprivacy")]),
     ],
-    swiftLanguageModes: [.v5]
+    swiftLanguageModes: [.v5, .v6]
 )

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'AdSearchKit'
-  s.version = '1.0.2'
+  s.version = '1.1'
   s.license = 'MIT'
   s.summary = 'AdSearchKit fetches Apple Search Ads attribution data via AdServices API.'
   s.homepage = 'https://github.com/dimayurkovski/AdSearchKit'
@@ -10,6 +10,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/**/*.swift'
   s.frameworks = 'AdServices'
   s.platform = :ios, '12.0'
-  s.swift_versions = ['5']
+  s.swift_versions = ['5', '6']
   s.resource_bundles = {'AdSearchKit' => ['Sources/PrivacyInfo.xcprivacy']}
 end
