@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'AdSearchKit'
-  s.version = '1.0.1'
+  s.version = '1.1'
   s.license = 'MIT'
   s.summary = 'AdSearchKit fetches Apple Search Ads attribution data via AdServices API.'
   s.homepage = 'https://github.com/dimayurkovski/AdSearchKit'
