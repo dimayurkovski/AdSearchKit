@@ -1,4 +1,4 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 5.9
 
 import PackageDescription
 
@@ -13,6 +13,5 @@ let package = Package(
     targets: [
         .target(name: "AdSearchKit",
                 resources: [.process("PrivacyInfo.xcprivacy")]),
-    ],
-    swiftLanguageModes: [.v5, .v6]
+    ]
 )
