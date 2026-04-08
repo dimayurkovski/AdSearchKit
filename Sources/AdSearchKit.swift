@@ -55,7 +55,7 @@ public enum AdSearch {
      *
      * - Example: To log the framework version, use `AdSearchKit.version`.
      */
-    public static let version = "1.1"
+    public static let version = "1.2"
 }
 
 
